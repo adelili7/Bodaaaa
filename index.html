@@ -7,60 +7,75 @@
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <style>
-    *{margin:0;padding:0;box-sizing:border-box;font-family:'Playfair Display', serif;}
-    body{overflow-x:hidden;background:#f0f0f0;}
-    .section{width:100vw;height:100vh;display:flex;justify-content:center;align-items:center;flex-direction:column;position:relative;background-size:cover;background-position:center;transition:opacity 1s;}
-    .hidden{opacity:0;pointer-events:none;position:absolute;}
-    h1,h2,h3,p{color:#2c2c2c;text-align:center;}
-    h1{font-family:'Great Vibes', cursive;font-size:6vw;text-shadow:0 0 10px #fff,0 0 20px #c0f0ff,0 0 30px #00f;}
-    h2{font-family:'Playfair Display', serif;font-size:4vw;text-shadow:0 0 5px #fff,0 0 10px #00f;}
-    h3{font-size:3vw;}
-    p{font-size:2.5vw;line-height:1.5;}
-    .btn-music{position:absolute;top:20px;right:20px;padding:10px 15px;background:#fff;border-radius:10px;cursor:pointer;z-index:1000;}
-    .collage{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;width:80%;margin-top:20px;}
-    .collage img{width:100%;border-radius:10px;}
-    .shine{animation:shine 2s infinite;}
-    @keyframes shine{
-        0%,100%{text-shadow:0 0 5px #fff,0 0 10px #0ff,0 0 15px #00f;}
-        50%{text-shadow:0 0 10px #fff,0 0 20px #0ff,0 0 25px #00f;}
-    }
-    input,textarea{font-family:'Playfair Display', serif;}
-    .whatsapp-btn{margin:5px;padding:10px 20px;background:#25d366;color:white;border:none;border-radius:10px;font-size:2.5vw;cursor:pointer;text-decoration:none;}
-    @media(max-width:768px){h1{font-size:10vw;} h2{font-size:6vw;} p{font-size:4vw;}}
+/* RESET Y ESTILOS BASE */
+* {margin:0; padding:0; box-sizing:border-box; font-family:'Playfair Display', serif;}
+body {overflow-x:hidden; background:#f5f5f5;}
+
+/* SECCIONES */
+.section {width:100vw; height:100vh; display:flex; justify-content:center; align-items:center; flex-direction:column; position:relative; background-size:cover; background-position:center; transition:opacity 1s;}
+.hidden {opacity:0; pointer-events:none; position:absolute;}
+
+/* TIPOGRAFÍA ROMÁNTICA Y BRILLO */
+h1, h2, h3, p {text-align:center; color:#fff;}
+h1 {font-family:'Great Vibes', cursive; font-size:4rem; text-shadow:0 0 10px #fff,0 0 20px #ffc0cb,0 0 30px #ff69b4;}
+h2 {font-family:'Great Vibes', cursive; font-size:2.5rem; text-shadow:0 0 8px #fff,0 0 16px #ffb6c1; line-height:1.4; margin:10px;}
+h3 {font-family:'Great Vibes', cursive; font-size:2rem; text-shadow:0 0 5px #fff,0 0 10px #ff69b4; line-height:1.5; margin:5px;}
+p {font-size:1.5rem; line-height:1.8; color:#fff; text-shadow:0 0 5px #fff,0 0 10px #ff69b4; margin:10px;}
+
+.btn-music {position:absolute; top:20px; right:20px; padding:10px 15px; background:#fff; border-radius:10px; cursor:pointer;}
+.collage {display:grid; grid-template-columns:repeat(2,1fr); gap:10px; width:80%; margin-top:20px;}
+.collage img {width:100%; border-radius:10px;}
+.shine {animation:shine 2s infinite;}
+@keyframes shine {0%,100%{text-shadow:0 0 5px #fff,0 0 10px #ff69b4,0 0 15px #ffc0cb;}50%{text-shadow:0 0 10px #fff,0 0 20px #ff69b4,0 0 25px #ffc0cb;}}
+
+.parents-container {display:flex; justify-content:space-around; width:80%; margin-top:30px;}
+.parents {display:flex; flex-direction:column; align-items:center;}
+
+input, textarea {font-family:'Playfair Display', serif; padding:10px; border-radius:10px; margin:10px;}
+a {color:#ffebcd; text-decoration:underline;}
 </style>
 </head>
 <body>
 
-<!-- SECCION PORTADA -->
+<!-- SECCIÓN PORTADA -->
 <div id="section1" class="section" style="background-image:url('fondo_floral2.jpg');">
     <canvas id="ringCanvas" style="width:300px;height:300px;"></canvas>
     <h1 class="shine">¡Sí acepto!</h1>
-    <button class="btn-music" id="toggleMusic">⏯️ Música</button>
 </div>
 
-<!-- SECCION CORAZON -->
+<!-- SECCIÓN PROVERBIOS -->
 <div id="section2" class="section hidden" style="background-image:url('fondo_floral1.jpg');">
-    <h2 class="shine">Proverbios 18:22</h2>
-    <canvas id="heartCanvas" style="width:200px;height:200px;"></canvas>
+    <h2 class="shine" style="font-size:2.5rem; max-width:80%; line-height:1.6;">Proverbios 18:22 - Quien halla esposa halla el bien, y alcanza la benevolencia de Jehová.</h2>
+    <canvas id="heartCanvas" style="width:200px;height:200px;margin-top:20px;"></canvas>
 </div>
 
-<!-- SECCION NOVIOS -->
-<div id="section3" class="section hidden" style="background-image:url('fondo_floral2.jpg');">
-    <h2 class="shine">Con amor eterno</h2>
-    <h1 class="shine">Abril & Pablo</h1>
+<!-- SECCIÓN PADRES -->
+<div id="section3" class="section hidden" style="background-image:url('fondo_floral3.jpg');">
+    <h2 class="shine" style="font-size:3rem;">Nuestros padres</h2>
+    <div class="parents-container">
+        <div class="parents">
+            <h3>Eva Aguilar Rendón</h3>
+            <h3>Pedro Pérez Hernández</h3>
+        </div>
+        <div class="parents">
+            <h3>Saray Hernández Santana</h3>
+            <h3>Pablo Tinoco Carranza (finado)</h3>
+        </div>
+    </div>
+    <p style="font-size:1.5rem; line-height:2rem; max-width:80%; margin-top:20px;">“Tienen el honor de invitarles a compartir la dicha de sus amados hijos”</p>
+</div>
+
+<!-- SECCIÓN NOVIOS -->
+<div id="section4" class="section hidden" style="background-image:url('fondo_floral2.jpg');">
+    <h2 class="shine">Abril Pérez Aguilar & Pablo Eliel Tinoco Hernández</h2>
     <img src="foto1.jpg" alt="Foto1" style="width:300px;border-radius:15px;margin-top:20px;">
 </div>
 
-<!-- SECCION DETALLES -->
-<div id="section4" class="section hidden" style="background-image:url('fondo_floral2.jpg');overflow-y:auto;padding:20px;">
-    <h2 class="shine">Tienen el honor de invitarles a compartir la dicha de sus amados hijos</h2>
-    <h3>Los papás de la novia: Eva Aguilar Rendón y Pedro Pérez Hernández</h3>
-    <h3>Los papás del novio: Saray Hernández Santana y Pablo Tinoco Carranza (finado)</h3>
-    <p>Frase bíblica: Mateo 19:6</p>
-    <h2>Itinerario</h2>
+<!-- SECCIÓN DETALLES -->
+<div id="section5" class="section hidden" style="background-image:url('fondo_floral2.jpg');">
+    <h2>Itinerario:</h2>
     <p>⛪ Iglesia Cristiana "Palabra de vida" - 2pm <a href="https://maps.app.goo.gl/4wR8NornyG7r3Ava8" target="_blank">Mapa</a></p>
     <p>🎉 Recepción: Jardín "El Abuelo" - 4pm <a href="https://www.bing.com/maps?&ty=18&q=Jard%C3%ADn%20El%20Abuelo%2C%20Tlaquiltenango%2C%20Morelos%2C%20M%C3%A9xico" target="_blank">Mapa</a></p>
-    
     <h2>Nuestros hermosos momentos</h2>
     <div class="collage">
         <img src="momento1.jpg">
@@ -70,58 +85,58 @@
     </div>
     <h2>Tu amor es lo que he anhelado y el regalo que Dios me ha dado</h2>
     <img src="momento5.jpg" style="width:300px;border-radius:15px;">
-    
-    <h2>Código de vestimenta formal:</h2>
-    <p>Dejemos el blanco para la novia, tonos sugeridos: azules, verdes, plateados, grises</p>
-    
+    <h2>Código de vestimenta formal: Dejemos el blanco para la novia (tonos azules, verdes, plateados, grises)</h2>
     <h2>Confirma tu asistencia</h2>
-    <input type="number" placeholder="Número de personas" style="padding:10px;border-radius:10px;margin:10px;">
-    
+    <input type="number" placeholder="Número de personas">
     <h2>Buenos deseos</h2>
-    <textarea placeholder="Escribe tu mensaje" style="padding:10px;border-radius:10px;width:80%;height:80px;"></textarea>
-    
+    <textarea placeholder="Escribe tu mensaje"></textarea>
     <h2>Comparte tus fotos del evento</h2>
-    <input type="file" accept="image/*" multiple style="margin:10px;">
-    
-    <h2>WhatsApp de los novios</h2>
-    <a href="https://wa.me/5217774914500" class="whatsapp-btn" target="_blank">Abril</a>
-    <a href="https://wa.me/5217341123645" class="whatsapp-btn" target="_blank">Pablo</a>
-    
+    <input type="file" accept="image/*" multiple>
+    <h2><a href="https://wa.me/5217774914500" target="_blank">WhatsApp Abril</a> | <a href="https://wa.me/5217341123645" target="_blank">WhatsApp Pablo</a></h2>
     <h2>¡Gracias por acompañarnos en nuestra historia de Amor!</h2>
 </div>
 
-<audio id="weddingMusic" src="marcha_nupcial.mp3" autoplay loop></audio>
+<!-- AUDIOS -->
+<audio id="weddingMusic" src="marcha_nupcial.mp3" autoplay></audio>
 <audio id="eternallyMusic" src="eternamente.mp3"></audio>
 
 <script>
-// Secciones
-const sections=[document.getElementById('section1'),document.getElementById('section2'),document.getElementById('section3'),document.getElementById('section4')];
+// TRANSICIÓN ENTRE SECCIONES
+const sections=[document.getElementById('section1'),document.getElementById('section2'),document.getElementById('section3'),document.getElementById('section4'),document.getElementById('section5')];
 let currentSection=0;
-
-// Mostrar sección
 function showSection(index){
     sections.forEach(sec=>sec.classList.add('hidden'));
     sections[index].classList.remove('hidden');
 }
 
-// Inicia con portada
-showSection(0);
-
-// Toggle música
-const weddingMusic=document.getElementById('weddingMusic');
-document.getElementById('toggleMusic').addEventListener('click',()=>{
-    if(weddingMusic.paused) weddingMusic.play();
-    else weddingMusic.pause();
-});
-
-// THREE.JS - Anillo 3D
+// ANILLO 3D GIRATORIO CON THREE.JS
 const ringCanvas=document.getElementById('ringCanvas');
 const ringScene=new THREE.Scene();
 const ringCamera=new THREE.PerspectiveCamera(75,1,0.1,1000);
 const ringRenderer=new THREE.WebGLRenderer({canvas:ringCanvas,alpha:true});
 ringRenderer.setSize(300,300);
-
 const ringGeometry=new THREE.TorusGeometry(1,0.2,16,100);
-const ringMaterial=new THREE.MeshPhongMaterial({color:0xc0c0c0,shininess:150,emissive:0x8888ff,specular:0xffffff});
-const ring
+const ringMaterial=new THREE.MeshPhongMaterial({color:0xc0c0c0, shininess:100, emissive:0x8888ff, specular:0xffffff});
+const ring=new THREE.Mesh(ringGeometry,ringMaterial);
+ringScene.add(ring);
+// LUZ
+const ringLight=new THREE.PointLight(0xffffff,1);
+ringLight.position.set(5,5,5);
+ringScene.add(ringLight);
+ringCamera.position.z=5;
+// ANIMACIÓN
+function animateRing(){
+    requestAnimationFrame(animateRing);
+    ring.rotation.x +=0.01;
+    ring.rotation.y +=0.01;
+    ringRenderer.render(ringScene, ringCamera);
+}
+animateRing();
+
+// CLICK PARA PASAR A LA SIGUIENTE SECCIÓN
+ringCanvas.addEventListener('click',()=>{showSection(1); document.getElementById('weddingMusic').pause(); document.getElementById('eternallyMusic').play();});
+</script>
+
+</body>
+</html>
  
