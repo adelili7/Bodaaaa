@@ -3,194 +3,128 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Invitación Boda Abril & Pablo</title>
+<title>Invitación de Boda - Abril & Pablo</title>
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <style>
-body, html{margin:0; padding:0; width:100%; height:100%; font-family:'Great Vibes', cursive; overflow-x:hidden;}
-canvas{display:block;}
-#uiOverlay{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;display:flex;justify-content:center;align-items:center;flex-direction:column;text-align:center;color:white;}
-.section{padding:50px; text-align:center;}
-h1,h2,h3,p{margin:15px 0;}
-h1{font-size:70px; text-shadow:0 0 30px #fff,0 0 60px #ff0,0 0 90px #f0f;}
-h2{font-size:50px; text-shadow:0 0 20px #fff,0 0 40px #00f,0 0 60px #ff69b4;}
-h3{font-size:40px; text-shadow:0 0 15px #fff,0 0 30px #0ff;}
-img{max-width:80%; border-radius:15px; margin:10px;}
-#siAcepto{font-size:80px; text-shadow:0 0 20px #fff,0 0 40px #00f,0 0 60px #ff69b4; pointer-events:auto; cursor:pointer; margin-top:20px;}
-#fraseAmor{font-size:60px; text-shadow:0 0 20px #fff,0 0 40px #f0f,0 0 60px #00f; opacity:0; transition:opacity 1s;}
-#nombres{font-size:70px; text-shadow:0 0 30px #fff,0 0 60px #ff0,0 0 90px #f0f; opacity:0; transition:opacity 1s 0.5s;}
-#foto1{width:350px; max-width:80%; border-radius:15px; margin-top:20px; opacity:0; transition:opacity 1s 1s;}
-button{padding:10px 20px; font-size:18px; margin:10px; border-radius:10px; cursor:pointer;}
-iframe{border:none; width:80%; height:400px; border-radius:15px; margin-top:20px;}
+    *{margin:0;padding:0;box-sizing:border-box;font-family:'Playfair Display', serif;}
+    body{overflow-x:hidden;}
+    .section{width:100vw;height:100vh;display:flex;justify-content:center;align-items:center;flex-direction:column;position:relative;background-size:cover;background-position:center;transition:opacity 1s;}
+    .hidden{opacity:0;pointer-events:none;position:absolute;}
+    h1,h2,h3,p{color:#2c2c2c;text-align:center;}
+    h1{font-family:'Great Vibes', cursive;font-size:4rem;text-shadow:0 0 10px #fff,0 0 20px #ff9,0 0 30px #f0f;}
+    h2{font-size:2.5rem;text-shadow:0 0 5px #fff,0 0 10px #ff9;}
+    .btn-music{position:absolute;top:20px;right:20px;padding:10px 15px;background:#fff;border-radius:10px;cursor:pointer;}
+    .collage{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;width:80%;margin-top:20px;}
+    .collage img{width:100%;border-radius:10px;}
+    .shine{animation:shine 2s infinite;}
+    @keyframes shine{0%,100%{text-shadow:0 0 5px #fff,0 0 10px #ff9,0 0 15px #f0f;}50%{text-shadow:0 0 10px #fff,0 0 20px #ff9,0 0 25px #f0f;}}
+    .whatsapp-btn{display:inline-block;margin:5px;padding:10px 15px;background:#25D366;color:#fff;border-radius:10px;text-decoration:none;font-weight:bold;}
 </style>
 </head>
 <body>
 
-<!-- Música -->
-<audio id="marchaNupcial" autoplay>
-  <source src="audio/marcha_nupcial.mp3" type="audio/mp3">
-</audio>
-<audio id="eternamente">
-  <source src="audio/eternamente.mp3" type="audio/mp3">
-</audio>
-
-<!-- Portada 3D -->
-<div id="uiOverlay">
-  <div id="siAcepto">¡Sí acepto!</div>
-  <div id="fraseAmor">Con amor eterno</div>
-  <div id="nombres">Abril & Pablo</div>
-  <img id="foto1" src="imagenes/momento1.jpg">
+<!-- SECCION PORTADA -->
+<div id="section1" class="section" style="background-image:url('fondo_floral2.jpg');">
+    <canvas id="ringCanvas" style="width:300px;height:300px;"></canvas>
+    <h1 class="shine">¡Sí acepto!</h1>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/three@0.158.0/build/three.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/three@0.158.0/examples/js/controls/OrbitControls.js"></script>
+<!-- SECCION CORAZON -->
+<div id="section2" class="section hidden" style="background-image:url('fondo_floral1.jpg');">
+    <h2 class="shine">Proverbios 18:22 - El que halla esposa halla el bien, y alcanza la benevolencia de Jehová.</h2>
+    <canvas id="heartCanvas" style="width:200px;height:200px;"></canvas>
+</div>
+
+<!-- SECCION NOVIOS -->
+<div id="section3" class="section hidden" style="background-image:url('fondo_floral2.jpg');">
+    <h2 class="shine">Con amor eterno</h2>
+    <h1 class="shine">Abril & Pablo</h1>
+    <img src="foto1.jpg" alt="Foto1" style="width:300px;border-radius:15px;margin-top:20px;">
+</div>
+
+<!-- SECCION DETALLES -->
+<div id="section4" class="section hidden" style="background-image:url('fondo_floral2.jpg');padding:20px;overflow-y:auto;">
+    <h2>Los papás de la novia: Eva Aguilar Rendón y Pedro Pérez Hernández</h2>
+    <h2>Los papás del novio: Saray Hernández Santana y Pablo Tinoco Carranza (finado)</h2>
+    <p>Tienen el honor de invitarles a compartir la dicha de sus amados hijos</p>
+    <p>Frase bíblica: Mateo 19:6</p>
+    <h2>Itinerario:</h2>
+    <p>⛪ Iglesia Cristiana "Palabra de vida" - 2pm <a href="https://maps.app.goo.gl/4wR8NornyG7r3Ava8" target="_blank">Mapa</a></p>
+    <p>🎉 Recepción: Jardín "El Abuelo" - 4pm <a href="https://www.bing.com/maps?&ty=18&q=Jard%C3%ADn%20El%20Abuelo%2C%20Tlaquiltenango%2C%20Morelos%2C%20M%C3%A9xico" target="_blank">Mapa</a></p>
+    <h2>Nuestros hermosos momentos</h2>
+    <div class="collage">
+        <img src="momento1.jpg">
+        <img src="momento2.jpg">
+        <img src="momento3.jpg">
+        <img src="momento4.jpg">
+    </div>
+    <h2>Tu amor es lo que he anhelado y el regalo que Dios me ha dado</h2>
+    <img src="momento5.jpg" style="width:300px;border-radius:15px;">
+    <h2>Código de vestimenta formal: Dejemos el blanco para la novia (tonos azules, verdes, plateados, grises)</h2>
+    <h2>Confirma tu asistencia</h2>
+    <input type="number" placeholder="Número de personas" style="padding:10px;border-radius:10px;margin:10px;">
+    <h2>Buenos deseos</h2>
+    <textarea placeholder="Escribe tu mensaje" style="padding:10px;border-radius:10px;width:80%;height:80px;"></textarea>
+    <h2>Comparte tus fotos del evento</h2>
+    <input type="file" accept="image/*" multiple style="margin:10px;">
+    <div>
+        <a class="whatsapp-btn" href="https://wa.me/5217774914500" target="_blank">WhatsApp Abril</a>
+        <a class="whatsapp-btn" href="https://wa.me/5217341123645" target="_blank">WhatsApp Pablo</a>
+    </div>
+    <h2>¡Gracias por acompañarnos en nuestra historia de Amor!</h2>
+</div>
+
+<audio id="weddingMusic" src="marcha_nupcial.mp3" autoplay></audio>
+<audio id="eternallyMusic" src="eternamente.mp3"></audio>
+
 <script>
-// ESCENA 3D
-const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(50, window.innerWidth/window.innerHeight, 0.1, 1000);
-camera.position.z = 10;
-const renderer = new THREE.WebGLRenderer({antialias:true, alpha:true});
-renderer.setSize(window.innerWidth, window.innerHeight);
-document.body.appendChild(renderer.domElement);
+const sections=[document.getElementById('section1'),document.getElementById('section2'),document.getElementById('section3'),document.getElementById('section4')];
+let currentSection=0;
+function showSection(index){sections.forEach((sec,i)=>{sec.classList.add('hidden');});sections[index].classList.remove('hidden');}
+showSection(0);
 
-// LUCES
-const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
-scene.add(ambientLight);
-const pointLight = new THREE.PointLight(0xffffff, 1);
-pointLight.position.set(10,10,10);
-scene.add(pointLight);
-
-// PARTICULAS MÁGICAS
-const particleGeometry = new THREE.BufferGeometry();
-const particleCount = 500;
-const positions = [];
-for(let i=0;i<particleCount;i++){
-  positions.push((Math.random()-0.5)*50);
-  positions.push((Math.random()-0.5)*50);
-  positions.push((Math.random()-0.5)*50);
-}
-particleGeometry.setAttribute('position', new THREE.Float32BufferAttribute(positions,3));
-const particleMaterial = new THREE.PointsMaterial({color:0xffffff, size:0.15, transparent:true});
-const particles = new THREE.Points(particleGeometry, particleMaterial);
-scene.add(particles);
-
-// ANILLO 3D GIRATORIO
-const torusGeometry = new THREE.TorusGeometry(3,0.3,32,100);
-const torusMaterial = new THREE.MeshStandardMaterial({color:0xc0c0c0, metalness:1, roughness:0.2, emissive:0xffffff, emissiveIntensity:0.5});
-const anillo = new THREE.Mesh(torusGeometry, torusMaterial);
-scene.add(anillo);
-
-// CORAZÓN 3D
-const heartShape = new THREE.Shape();
+// Anillo 3D
+const ringCanvas=document.getElementById('ringCanvas');
+const ringScene=new THREE.Scene();
+const ringCamera=new THREE.PerspectiveCamera(75,1,0.1,1000);
+const ringRenderer=new THREE.WebGLRenderer({canvas:ringCanvas,alpha:true});
+ringRenderer.setSize(300,300);
+const ringGeometry=new THREE.TorusGeometry(1,0.2,16,100);
+const ringMaterial=new THREE.MeshPhongMaterial({color:0xc0c0c0,shininess:100,emissive:0x8888ff,specular:0xffffff});
+const ring=new THREE.Mesh(ringGeometry,ringMaterial);
+ringScene.add(ring);
+const heartShape=new THREE.Shape();
 heartShape.moveTo(0,0.5);
-heartShape.bezierCurveTo(0,0.5, -0.5,0, -0.5,-0.5);
-heartShape.bezierCurveTo(-0.5,-1, 0,-1.2, 0, -1.5);
-heartShape.bezierCurveTo(0,-1.2, 0.5,-1, 0.5,-0.5);
-heartShape.bezierCurveTo(0.5,0, 0,0.5, 0,0.5);
-const extrudeSettings = {depth:0.3, bevelEnabled:true, bevelSegments:2, steps:2, bevelSize:0.1, bevelThickness:0.1};
-const heartGeometry = new THREE.ExtrudeGeometry(heartShape, extrudeSettings);
-const heartMaterial = new THREE.MeshStandardMaterial({color:0x007fff, metalness:1, roughness:0.2, emissive:0x007fff, emissiveIntensity:0.5});
-const heart = new THREE.Mesh(heartGeometry, heartMaterial);
-heart.position.set(0,0,0.3);
-heart.scale.set(1.5,1.5,1.5);
-scene.add(heart);
+heartShape.bezierCurveTo(0,0.5, -0.5,0, 0, -0.5);
+heartShape.bezierCurveTo(0.5,0,0,0.5,0,0.5);
+const heartGeometry=new THREE.ExtrudeGeometry(heartShape,{depth:0.2,bevelEnabled:true,bevelThickness:0.05,bevelSize:0.05});
+const heartMaterial=new THREE.MeshPhongMaterial({color:0x0000ff,shininess:200,emissive:0x00ffff});
+const heart=new THREE.Mesh(heartGeometry,heartMaterial);
+heart.position.set(0,0,0.5);
+ring.add(heart);
+const ringLight=new THREE.PointLight(0xffffff,1);
+ringLight.position.set(5,5,5);
+ringScene.add(ringLight);
+ringCamera.position.z=3;
+function animateRing(){requestAnimationFrame(animateRing);ring.rotation.y+=0.01;ring.rotation.x+=0.005;ringRenderer.render(ringScene,ringCamera);}
+animateRing();
+ringCanvas.addEventListener('click',()=>{document.getElementById('weddingMusic').pause();document.getElementById('eternallyMusic').play();showSection(1);});
 
-// UI
-const ui = {
-  siAcepto: document.getElementById('siAcepto'),
-  fraseAmor: document.getElementById('fraseAmor'),
-  nombres: document.getElementById('nombres'),
-  foto1: document.getElementById('foto1'),
-  marcha: document.getElementById('marchaNupcial'),
-  eternamente: document.getElementById('eternamente')
-};
-
-// CLICK EN ANILLO
-ui.siAcepto.addEventListener('click',()=>{
-  ui.marcha.pause();
-  ui.eternamente.play();
-  ui.fraseAmor.style.opacity=1;
-  ui.nombres.style.opacity=1;
-  ui.foto1.style.opacity=1;
-});
-
-// ANIMACIÓN
-function animate(){
-  requestAnimationFrame(animate);
-  anillo.rotation.y += 0.01;
-  heart.rotation.y += 0.01;
-  // Brillo dinámico
-  anillo.material.emissiveIntensity = 0.5 + Math.sin(Date.now()*0.005)*0.5;
-  heart.material.emissiveIntensity = 0.5 + Math.sin(Date.now()*0.005)*0.5;
-  renderer.render(scene, camera);
-}
-animate();
-window.addEventListener('resize',()=>{
-  camera.aspect = window.innerWidth/window.innerHeight;
-  camera.updateProjectionMatrix();
-  renderer.setSize(window.innerWidth, window.innerHeight);
-});
+// Corazón 3D
+const heartCanvas=document.getElementById('heartCanvas');
+const heartScene=new THREE.Scene();
+const heartCamera=new THREE.PerspectiveCamera(75,1,0.1,1000);
+const heartRenderer=new THREE.WebGLRenderer({canvas:heartCanvas,alpha:true});
+heartRenderer.setSize(200,200);
+const heartMesh=new THREE.Mesh(heartGeometry,heartMaterial);
+heartScene.add(heartMesh);
+heartCamera.position.z=3;
+function animateHeart(){requestAnimationFrame(animateHeart);heartMesh.rotation.y+=0.01;heartMesh.rotation.x=Math.sin(Date.now()*0.001)*0.2;heartRenderer.render(heartScene,heartCamera);}
+animateHeart();
+heartCanvas.addEventListener('click',()=>{showSection(2);});
+sections[2].addEventListener('click',()=>{showSection(3);});
 </script>
-
-<!-- SECCIONES DE BODA -->
-<div class="section" style="background-image:url('imagenes/fondo_floral2.jpg'); background-size:cover; color:white;">
-  <h2>Eva Aguilar Rendón & Pedro Pérez Hernández</h2>
-  <h2>Saray Hernández Santana & Pablo Tinoco Carranza (finado)</h2>
-  <p>Tienen el honor de invitarles a compartir la dicha de sus amados hijos</p>
-  <h1>Abril Pérez Aguilar & Pablo Eliel Tinoco Hernández</h1>
-  <p>Mateo 19:6</p>
-</div>
-
-<div class="section" style="background-image:url('imagenes/fondo_floral1.jpg'); background-size:cover;">
-  <h2>Itinerario</h2>
-  <h3>Ceremonia Religiosa</h3>
-  <p>2:00 pm - Iglesia Cristiana "Palabra de vida"</p>
-  <iframe src="https://www.google.com/maps?q=18.630,-99.162&hl=es&output=embed"></iframe>
-  <h3>Recepción</h3>
-  <p>4:00 pm - Jardín "El Abuelo", Tlaquiltenango, Morelos</p>
-  <iframe src="https://www.bing.com/maps/embed?h=400&w=800&cp=18.627356~-99.163499&lvl=16&typ=d&sty=r&src=SHELL&form=S00027"></iframe>
-</div>
-
-<div class="section" style="background-image:url('imagenes/fondo_floral2.jpg'); background-size:cover;">
-  <h2>Nuestros Hermosos Momentos</h2>
-  <div>
-    <img src="imagenes/momento1.jpg">
-    <img src="imagenes/momento2.jpg">
-    <img src="imagenes/momento3.jpg">
-    <img src="imagenes/momento4.jpg">
-  </div>
-  <h3>Tu amor es lo que he anhelado y el regalo que Dios me ha dado</h3>
-  <img src="imagenes/momento5.jpg">
-</div>
-
-<div class="section" style="background-color:#219AB6; color:white;">
-  <h2>Código de Vestimenta Formal</h2>
-  <p>Dejemos el blanco para la novia</p>
-  <p>Paleta de colores sugeridos: azul, verde, plateado, gris</p>
-</div>
-
-<div class="section" style="background-color:#fff; color:#000;">
-  <h2>Confirma tu asistencia</h2>
-  <label>Número de personas que asistirán: <input type="number" min="1"></label>
-</div>
-
-<div class="section" style="background-color:#f0f0f0;">
-  <h2>Buenos deseos</h2>
-  <textarea placeholder="Escribe tus deseos para los novios" rows="4" style="width:80%;"></textarea>
-</div>
-
-<div class="section" style="background-color:#fff;">
-  <h2>Comparte tus fotos del evento</h2>
-  <input type="file" multiple>
-</div>
-
-<div class="section" style="background-color:#219AB6; color:white;">
-  <h2>Contacto por WhatsApp</h2>
-  <p>Abril: <a href="https://wa.me/5217774914500" target="_blank" style="color:white;">+52 1 777 491 4500</a></p>
-  <p>Pablo: <a href="https://wa.me/5217341123645" target="_blank" style="color:white;">+52 1 734 112 3645</a></p>
-</div>
-
-<div class="section" style="background-color:#f0f0f0;">
-  <h2>¡Gracias por acompañarnos en nuestra historia de Amor!</h2>
-</div>
 </body>
 </html>
+ 
