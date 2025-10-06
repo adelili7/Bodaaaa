@@ -4,54 +4,53 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Invitación de Boda - Abril & Pablo</title>
+
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Playfair Display', serif;}
-body, html{width:100%;height:100%;overflow-x:hidden;background:#f5f5f5;}
-.section{width:100%;height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;position:relative;background-size:cover;background-position:center;transition:opacity 1s;}
-.hidden{opacity:0;pointer-events:none;position:absolute;}
-h1,h2,h3,p{color:#fff;text-align:center;}
-h1{font-family:'Great Vibes', cursive;font-size:6vw;text-shadow:0 0 10px #fff,0 0 20px #ffc0cb,0 0 30px #ff69b4;}
-h2{font-size:3vw;text-shadow:0 0 8px #fff,0 0 16px #ffb6c1;line-height:1.4;}
-h3{font-size:2.5vw;text-shadow:0 0 5px #fff,0 0 10px #ff69b4;line-height:1.5;}
-p{font-size:2vw;line-height:1.8;color:#fff;text-shadow:0 0 5px #fff,0 0 10px #ff69b4;}
-input,textarea{font-family:'Playfair Display', serif;padding:10px;border-radius:10px;margin:10px;width:80%;}
-a{color:#fff;text-decoration:none;}
-.collage{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;width:80%;margin-top:20px;}
+body{overflow-x:hidden;background:#f5f5f5;}
+.section{width:100vw;height:100vh;display:flex;justify-content:center;align-items:center;flex-direction:column;position:absolute;top:0;left:0;background-size:cover;background-position:center;opacity:0;pointer-events:none;transition:opacity 1s;}
+.active{opacity:1;pointer-events:auto;}
+h1,h2,h3,p,a{color:#fff;text-align:center;}
+h1{font-family:'Great Vibes', cursive;font-size:4rem;text-shadow:0 0 10px #fff,0 0 20px #ffc0cb,0 0 30px #ff69b4;}
+h2{font-family:'Playfair Display', serif;font-size:2.5rem;text-shadow:0 0 8px #fff,0 0 16px #ffb6c1;line-height:1.4;}
+h3{font-family:'Playfair Display', serif;font-size:2rem;text-shadow:0 0 5px #fff,0 0 10px #ff69b4;line-height:1.5;}
+p{font-size:1.5rem;line-height:1.8;color:#fff;text-shadow:0 0 5px #fff,0 0 10px #ff69b4;}
+a{color:#ffebcd;text-decoration:underline;}
+.btn-music{position:absolute;top:20px;right:20px;padding:10px 15px;background:#fff;border-radius:10px;cursor:pointer;}
+.collage{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;width:80%;margin-top:20px;}
 .collage img{width:100%;border-radius:10px;}
-.parents-container{display:flex;flex-wrap:wrap;justify-content:space-around;width:80%;margin-top:30px;}
-.parents{display:flex;flex-direction:column;align-items:center;}
-.parents h3{font-family:'Great Vibes', cursive;font-size:2.5vw;line-height:1.6;text-shadow:0 0 8px #fff,0 0 16px #ffb6c1;}
 .shine{animation:shine 2s infinite;}
 @keyframes shine{0%,100%{text-shadow:0 0 5px #fff,0 0 10px #ff69b4,0 0 15px #ffc0cb;}50%{text-shadow:0 0 10px #fff,0 0 20px #ff69b4,0 0 25px #ffc0cb;}}
-canvas{display:block;}
-.btn-music{position:absolute;top:20px;right:20px;padding:10px 15px;background:#fff;border-radius:10px;cursor:pointer;z-index:1000;}
+.parents-container{display:flex;justify-content:space-around;width:80%;margin-top:30px;}
+.parents{display:flex;flex-direction:column;align-items:center;}
+.parents h3{font-family:'Great Vibes', cursive;font-size:2rem;line-height:1.6;text-shadow:0 0 8px #fff,0 0 16px #ffb6c1;}
+input,textarea{font-family:'Playfair Display', serif;}
+canvas{border-radius:20px;}
 </style>
 </head>
 <body>
 
-<!-- Botón música -->
-<button class="btn-music" id="toggleMusic">⏯️</button>
-
-<!-- SECCIÓN PORTADA -->
-<div id="section1" class="section" style="background-image:url('fondo_floral2.jpg');">
+<!-- PORTADA -->
+<div id="section1" class="section active" style="background-image:url('fondo_floral2.jpg');">
     <canvas id="ringCanvas" style="width:300px;height:300px;"></canvas>
     <h1 class="shine">¡Sí acepto!</h1>
 </div>
 
-<!-- SECCIÓN PROVERBIOS -->
-<div id="section2" class="section hidden" style="background-image:url('fondo_floral1.jpg');">
-    <h2 class="shine">
+<!-- PROVERBIOS -->
+<div id="section2" class="section" style="background-image:url('fondo_floral1.jpg');">
+    <h2 class="shine" style="max-width:80%;line-height:1.6;text-align:center;">
         Proverbios 18:22 - Quien halla esposa halla el bien, y alcanza la benevolencia de Jehová.
     </h2>
     <canvas id="heartCanvas" style="width:200px;height:200px;margin-top:20px;"></canvas>
 </div>
 
-<!-- SECCIÓN PADRES -->
-<div id="section3" class="section hidden" style="background-image:url('fondo_floral3.jpg');">
-    <h2 class="shine" style="font-size:4vw;">Nuestros padres</h2>
+<!-- PADRES -->
+<div id="section3" class="section" style="background-image:url('fondo_floral3.jpg');">
+    <h2 class="shine" style="font-size:3rem;">Nuestros padres</h2>
     <div class="parents-container">
         <div class="parents">
             <h3>Eva Aguilar Rendón</h3>
@@ -62,19 +61,19 @@ canvas{display:block;}
             <h3>Pablo Tinoco Carranza (finado)</h3>
         </div>
     </div>
-    <p style="font-size:2vw;line-height:2rem;text-align:center;max-width:80%;margin-top:20px;">
+    <p style="font-size:1.5rem;line-height:2rem;text-align:center;max-width:80%;margin-top:20px;">
         “Tienen el honor de invitarles a compartir la dicha de sus amados hijos”
     </p>
 </div>
 
-<!-- SECCIÓN NOVIOS -->
-<div id="section4" class="section hidden" style="background-image:url('fondo_floral2.jpg');">
-    <h2 class="shine" style="font-size:4vw;">Abril Pérez Aguilar & Pablo Eliel Tinoco Hernández</h2>
-    <img src="foto1.jpg" alt="Foto1" style="width:50%;max-width:300px;border-radius:15px;margin-top:20px;">
+<!-- NOVIOS -->
+<div id="section4" class="section" style="background-image:url('fondo_floral2.jpg');">
+    <h2 class="shine">Abril Pérez Aguilar & Pablo Eliel Tinoco Hernández</h2>
+    <img src="foto1.jpg" alt="Foto1" style="width:300px;border-radius:15px;margin-top:20px;">
 </div>
 
-<!-- SECCIÓN DETALLES -->
-<div id="section5" class="section hidden" style="background-image:url('fondo_floral2.jpg');">
+<!-- DETALLES -->
+<div id="section5" class="section" style="background-image:url('fondo_floral2.jpg');">
     <h2>Itinerario:</h2>
     <p>⛪ Iglesia Cristiana "Palabra de vida" - 2pm <a href="https://maps.app.goo.gl/4wR8NornyG7r3Ava8" target="_blank">Mapa</a></p>
     <p>🎉 Recepción: Jardín "El Abuelo" - 4pm <a href="https://www.bing.com/maps?&ty=18&q=Jard%C3%ADn%20El%20Abuelo%2C%20Tlaquiltenango%2C%20Morelos%2C%20M%C3%A9xico" target="_blank">Mapa</a></p>
@@ -86,88 +85,92 @@ canvas{display:block;}
         <img src="momento4.jpg">
     </div>
     <h2>Tu amor es lo que he anhelado y el regalo que Dios me ha dado</h2>
-    <img src="momento5.jpg" style="width:50%;max-width:300px;border-radius:15px;">
+    <img src="momento5.jpg" style="width:300px;border-radius:15px;">
     <h2>Código de vestimenta formal: Dejemos el blanco para la novia (tonos azules, verdes, plateados, grises)</h2>
     <h2>Confirma tu asistencia</h2>
-    <input type="number" placeholder="Número de personas">
+    <input type="number" placeholder="Número de personas" style="padding:10px;border-radius:10px;margin:10px;">
     <h2>Buenos deseos</h2>
-    <textarea placeholder="Escribe tu mensaje"></textarea>
+    <textarea placeholder="Escribe tu mensaje" style="padding:10px;border-radius:10px;width:80%;height:80px;"></textarea>
     <h2>Comparte tus fotos del evento</h2>
-    <input type="file" accept="image/*" multiple>
-    <h2>
-        <a href="https://wa.me/5217774914500" target="_blank">WhatsApp Abril</a> | 
-        <a href="https://wa.me/5217341123645" target="_blank">WhatsApp Pablo</a>
-    </h2>
+    <input type="file" accept="image/*" multiple style="margin:10px;">
+    <h2><a href="https://wa.me/5217774914500" target="_blank">WhatsApp Abril</a> | <a href="https://wa.me/5217341123645" target="_blank">WhatsApp Pablo</a></h2>
     <h2>¡Gracias por acompañarnos en nuestra historia de Amor!</h2>
 </div>
 
-<!-- Audios -->
+<!-- AUDIOS -->
 <audio id="weddingMusic" src="marcha_nupcial.mp3" autoplay loop></audio>
 <audio id="eternallyMusic" src="eternamente.mp3"></audio>
 
 <script>
-// Manejo de secciones con GSAP
-const sections = [section1,section2,section3,section4,section5];
-let currentSection = 0;
-function showSection(index){
-    gsap.to(sections[currentSection],{opacity:0,duration:0.8,onComplete:()=>{
-        sections[currentSection].classList.add('hidden');
-        sections[index].classList.remove('hidden');
-        gsap.fromTo(sections[index],{opacity:0},{opacity:1,duration:0.8});
-        currentSection=index;
-    }});
+// SECCIONES Y TRANSICIONES AUTOMÁTICAS
+const sections = [
+  document.getElementById('section1'),
+  document.getElementById('section2'),
+  document.getElementById('section3'),
+  document.getElementById('section4'),
+  document.getElementById('section5')
+];
+
+let current = 0;
+function showSection(idx){
+  sections.forEach((s,i)=>{
+    s.style.opacity = i===idx ? 1 : 0;
+    s.style.pointerEvents = i===idx ? 'auto' : 'none';
+  });
 }
+function nextSection(){
+  current++;
+  if(current>=sections.length) return;
+  showSection(current);
+}
+sections[0].addEventListener('click',nextSection);
+sections[1].addEventListener('click',nextSection);
+sections[2].addEventListener('click',nextSection);
+sections[3].addEventListener('click',nextSection);
 
-// Botón música
-const weddingMusic=document.getElementById('weddingMusic');
-document.getElementById('toggleMusic').addEventListener('click',()=>{weddingMusic.paused?weddingMusic.play():weddingMusic.pause();});
-
-// Click en anillo para transición
-document.getElementById('ringCanvas').addEventListener('click',()=>{
-    showSection(1);
-    weddingMusic.pause();
-    document.getElementById('eternallyMusic').play();
-});
-
-// Three.js Anillo 3D + Diamante Corazón
-const ringCanvas=document.getElementById('ringCanvas');
-const ringScene=new THREE.Scene();
-const ringCamera=new THREE.PerspectiveCamera(75,1,0.1,1000);
-const ringRenderer=new THREE.WebGLRenderer({canvas:ringCanvas,alpha:true});
+// THREE.JS - Anillo 3D con diamante azul y corazón
+const ringCanvas = document.getElementById('ringCanvas');
+const ringScene = new THREE.Scene();
+const ringCamera = new THREE.PerspectiveCamera(50,1,0.1,1000);
+const ringRenderer = new THREE.WebGLRenderer({canvas:ringCanvas, alpha:true});
 ringRenderer.setSize(300,300);
 
+// Luz
+const ambientLight = new THREE.AmbientLight(0xffffff, 1);
+ringScene.add(ambientLight);
+const directionalLight = new THREE.DirectionalLight(0xffffff, 0.5);
+directionalLight.position.set(5,5,5);
+ringScene.add(directionalLight);
+
 // Anillo
-const ringGeometry=new THREE.TorusGeometry(1,0.2,16,100);
-const ringMaterial=new THREE.MeshPhongMaterial({color:0xc0c0c0,shininess:100,emissive:0x8888ff,specular:0xffffff});
-const ring=new THREE.Mesh(ringGeometry,ringMaterial);
+const ringGeometry = new THREE.TorusGeometry(1,0.2,32,100);
+const ringMaterial = new THREE.MeshPhongMaterial({color:0xc0c0c0, shininess:100, emissive:0x8888ff, specular:0xffffff});
+const ring = new THREE.Mesh(ringGeometry, ringMaterial);
 ringScene.add(ring);
 
-// Diamante corazón
-const heartShape=new THREE.Shape();
-heartShape.moveTo(0.5,0.5);
-heartShape.bezierCurveTo(0.5,0.5,0,1,-0.5,0.5);
-heartShape.bezierCurveTo(-0.5,0,0,0.2,0.5,0.5);
-const extrudeSettings={depth:0.3,bevelEnabled:true,bevelThickness:0.05,bevelSize:0.05,bevelSegments:3};
-const heartGeometry=new THREE.ExtrudeGeometry(heartShape,extrudeSettings);
-const heartMaterial=new THREE.MeshPhongMaterial({color:0x1e90ff,shininess:100,specular:0xffffff});
-const heartMesh=new THREE.Mesh(heartGeometry,heartMaterial);
-heartMesh.position.set(0,0,0);
-ringScene.add(heartMesh);
+// Diamante en corazón
+const heartShape = new THREE.Shape();
+heartShape.moveTo(0,0.5);
+heartShape.bezierCurveTo(0,0.5,-0.5,0,0,-0.5);
+heartShape.bezierCurveTo(0.5,0,0,0.5,0,0.5);
+const extrudeSettings = { depth:0.2, bevelEnabled:true, bevelThickness:0.05, bevelSize:0.05, bevelSegments:3 };
+const heartGeometry = new THREE.ExtrudeGeometry(heartShape, extrudeSettings);
+const heartMaterial = new THREE.MeshPhongMaterial({color:0x1e90ff, shininess:100, specular:0xffffff});
+const heart = new THREE.Mesh(heartGeometry, heartMaterial);
+heart.position.set(0,0,0);
+ringScene.add(heart);
 
-// Luz
-const light=new THREE.PointLight(0xffffff,1);
-light.position.set(5,5,5);
-ringScene.add(light);
-ringCamera.position.z=3;
+ringCamera.position.z = 3;
 
 // Animación
-function animate(){
-    requestAnimationFrame(animate);
-    ring.rotation.y+=0.01;
-    heartMesh.rotation.y+=0.01;
-    ringRenderer.render(ringScene,ringCamera);
+function animateRing(){
+    requestAnimationFrame(animateRing);
+    ring.rotation.y += 0.01;
+    heart.rotation.y += 0.01;
+    ringRenderer.render(ringScene, ringCamera);
 }
-animate();
+animateRing();
+
 </script>
 
 </body>
