@@ -11,19 +11,20 @@
 body{overflow-x:hidden;background:#f5f5f5;}
 .section{width:100vw;height:100vh;display:flex;justify-content:center;align-items:center;flex-direction:column;position:relative;background-size:cover;background-position:center;transition:opacity 1s;}
 .hidden{opacity:0;pointer-events:none;position:absolute;}
-h1,h2,h3,p,a{color:#fff;text-align:center;text-decoration:none;}
+h1,h2,h3,p{color:#fff;text-align:center;}
 h1{font-family:'Great Vibes', cursive;font-size:4rem;text-shadow:0 0 10px #fff,0 0 20px #ffc0cb,0 0 30px #ff69b4;}
-h2{font-family:'Great Vibes', cursive;font-size:2.5rem;text-shadow:0 0 10px #fff,0 0 20px #ffb6c1;line-height:1.4;margin:10px 0;}
-h3{font-family:'Great Vibes', cursive;font-size:2rem;text-shadow:0 0 8px #fff,0 0 16px #ffb6c1;line-height:1.5;margin:5px 0;}
-p{font-size:1.5rem;line-height:1.8;margin:5px 0;text-shadow:0 0 5px #fff,0 0 10px #ff69b4;}
-.btn-music{position:absolute;top:20px;right:20px;padding:10px 15px;background:#fff;border-radius:10px;cursor:pointer;color:#000;}
+h2{font-size:2.5rem;text-shadow:0 0 8px #fff,0 0 16px #ffb6c1;line-height:1.4;}
+h3{font-size:1.8rem;text-shadow:0 0 5px #fff,0 0 10px #ff69b4;line-height:1.5;}
+p{font-size:1.5rem;line-height:1.8;color:#fff;text-shadow:0 0 5px #fff,0 0 10px #ff69b4;}
+.btn-music{position:absolute;top:20px;right:20px;padding:10px 15px;background:#fff;border-radius:10px;cursor:pointer;}
 .collage{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;width:80%;margin-top:20px;}
 .collage img{width:100%;border-radius:10px;}
 .shine{animation:shine 2s infinite;}
 @keyframes shine{0%,100%{text-shadow:0 0 5px #fff,0 0 10px #ff69b4,0 0 15px #ffc0cb;}50%{text-shadow:0 0 10px #fff,0 0 20px #ff69b4,0 0 25px #ffc0cb;}}
 .parents-container{display:flex;justify-content:space-around;width:80%;margin-top:30px;}
 .parents{display:flex;flex-direction:column;align-items:center;}
-input,textarea{font-family:'Playfair Display', serif;padding:10px;border-radius:10px;margin:10px;}
+.parents h3{font-family:'Great Vibes', cursive;font-size:2rem;line-height:1.6;text-shadow:0 0 8px #fff,0 0 16px #ffb6c1;}
+input,textarea{font-family:'Playfair Display', serif;}
 </style>
 </head>
 <body>
@@ -36,13 +37,15 @@ input,textarea{font-family:'Playfair Display', serif;padding:10px;border-radius:
 
 <!-- SECCION PROVERBIOS -->
 <div id="section2" class="section hidden" style="background-image:url('fondo_floral1.jpg');">
-    <h2 class="shine">Proverbios 18:22 - Quien halla esposa halla el bien, y alcanza la benevolencia de Jehová.</h2>
+    <h2 class="shine" style="font-size:2.5rem;max-width:80%;line-height:1.6;text-align:center;">
+        Proverbios 18:22 - Quien halla esposa halla el bien, y alcanza la benevolencia de Jehová.
+    </h2>
     <canvas id="heartCanvas" style="width:200px;height:200px;margin-top:20px;"></canvas>
 </div>
 
 <!-- SECCION PADRES -->
 <div id="section3" class="section hidden" style="background-image:url('fondo_floral3.jpg');">
-    <h2 class="shine">Nuestros padres</h2>
+    <h2 class="shine" style="font-size:3rem;">Nuestros padres</h2>
     <div class="parents-container">
         <div class="parents">
             <h3>Eva Aguilar Rendón</h3>
@@ -53,7 +56,9 @@ input,textarea{font-family:'Playfair Display', serif;padding:10px;border-radius:
             <h3>Pablo Tinoco Carranza (finado)</h3>
         </div>
     </div>
-    <p>“Tienen el honor de invitarles a compartir la dicha de sus amados hijos”</p>
+    <p style="font-size:1.5rem;line-height:2rem;text-align:center;max-width:80%;margin-top:20px;">
+        “Tienen el honor de invitarles a compartir la dicha de sus amados hijos”
+    </p>
 </div>
 
 <!-- SECCION NOVIOS -->
@@ -65,8 +70,8 @@ input,textarea{font-family:'Playfair Display', serif;padding:10px;border-radius:
 <!-- SECCION DETALLES -->
 <div id="section5" class="section hidden" style="background-image:url('fondo_floral2.jpg');">
     <h2>Itinerario:</h2>
-    <p>⛪ Iglesia Cristiana "Palabra de vida" - 2pm <a href="https://maps.app.goo.gl/4wR8NornyG7r3Ava8" target="_blank">Mapa</a></p>
-    <p>🎉 Recepción: Jardín "El Abuelo" - 4pm <a href="https://www.bing.com/maps?&ty=18&q=Jard%C3%ADn%20El%20Abuelo%2C%20Tlaquiltenango%2C%20Morelos%2C%20M%C3%A9xico" target="_blank">Mapa</a></p>
+    <p>⛪ Iglesia Cristiana "Palabra de vida" - 2pm <a href="https://maps.app.goo.gl/4wR8NornyG7r3Ava8" target="_blank" style="color:#ffebcd;text-decoration:underline;">Mapa</a></p>
+    <p>🎉 Recepción: Jardín "El Abuelo" - 4pm <a href="https://www.bing.com/maps?&ty=18&q=Jard%C3%ADn%20El%20Abuelo%2C%20Tlaquiltenango%2C%20Morelos%2C%20M%C3%A9xico" target="_blank" style="color:#ffebcd;text-decoration:underline;">Mapa</a></p>
     <h2>Nuestros hermosos momentos</h2>
     <div class="collage">
         <img src="momento1.jpg">
@@ -78,11 +83,11 @@ input,textarea{font-family:'Playfair Display', serif;padding:10px;border-radius:
     <img src="momento5.jpg" style="width:300px;border-radius:15px;">
     <h2>Código de vestimenta formal: Dejemos el blanco para la novia (tonos azules, verdes, plateados, grises)</h2>
     <h2>Confirma tu asistencia</h2>
-    <input type="number" placeholder="Número de personas">
+    <input type="number" placeholder="Número de personas" style="padding:10px;border-radius:10px;margin:10px;">
     <h2>Buenos deseos</h2>
-    <textarea placeholder="Escribe tu mensaje" style="width:80%;height:80px;"></textarea>
+    <textarea placeholder="Escribe tu mensaje" style="padding:10px;border-radius:10px;width:80%;height:80px;"></textarea>
     <h2>Comparte tus fotos del evento</h2>
-    <input type="file" accept="image/*" multiple>
+    <input type="file" accept="image/*" multiple style="margin:10px;">
     <h2><a href="https://wa.me/5217774914500" target="_blank">WhatsApp Abril</a> | <a href="https://wa.me/5217341123645" target="_blank">WhatsApp Pablo</a></h2>
     <h2>¡Gracias por acompañarnos en nuestra historia de Amor!</h2>
 </div>
@@ -93,30 +98,42 @@ input,textarea{font-family:'Playfair Display', serif;padding:10px;border-radius:
 <script>
 const sections=[document.getElementById('section1'),document.getElementById('section2'),document.getElementById('section3'),document.getElementById('section4'),document.getElementById('section5')];
 let currentSection=0;
-function showSection(index){sections.forEach(s=>s.classList.add('hidden'));sections[index].classList.remove('hidden');}
+function showSection(index){sections.forEach((sec)=>{sec.classList.add('hidden');});sections[index].classList.remove('hidden');}
 showSection(0);
 
-// Ring 3D
+// THREE.JS - Anillo 3D con diamante corazón azul
 const ringCanvas=document.getElementById('ringCanvas');
-const scene=new THREE.Scene();
-const camera=new THREE.PerspectiveCamera(75,1,0.1,1000);
-const renderer=new THREE.WebGLRenderer({canvas:ringCanvas,alpha:true});
-renderer.setSize(300,300);
-camera.position.z=5;
-const geometry=new THREE.TorusGeometry(1,0.2,16,100);
-const material=new THREE.MeshPhongMaterial({color:0xc0c0c0,shininess:100,emissive:0x8888ff,specular:0xffffff});
-const ring=new THREE.Mesh(geometry,material);
-scene.add(ring);
-const light=new THREE.PointLight(0xffffff,1);
+const ringScene=new THREE.Scene();
+const ringCamera=new THREE.PerspectiveCamera(75,1,0.1,1000);
+const ringRenderer=new THREE.WebGLRenderer({canvas:ringCanvas,alpha:true});
+ringRenderer.setSize(300,300);
+const ringGeometry=new THREE.TorusGeometry(1,0.2,16,100);
+const ringMaterial=new THREE.MeshPhongMaterial({color:0xc0c0c0,shininess:100,emissive:0x8888ff,specular:0xffffff});
+const ring=new THREE.Mesh(ringGeometry,ringMaterial);
+ringScene.add(ring);
+
+// Diamante corazón 3D
+const diamondShape=new THREE.Shape();
+diamondShape.moveTo(0,0.5);
+diamondShape.bezierCurveTo(0,0.5,-0.5,0,0,-0.5);
+diamondShape.bezierCurveTo(0.5,0,0,0.5,0,0.5);
+const extrudeSettings={depth:0.2,bevelEnabled:true,bevelThickness:0.05,bevelSize:0.05,bevelSegments:1};
+const diamondGeometry=new THREE.ExtrudeGeometry(diamondShape,extrudeSettings);
+const diamondMaterial=new THREE.MeshPhongMaterial({color:0x00bfff,shininess:200,emissive:0x00ffff,specular:0xffffff});
+const diamond=new THREE.Mesh(diamondGeometry,diamondMaterial);
+diamond.position.set(0,0,0);
+ring.add(diamond);
+
+const light=new THREE.PointLight(0xffffff,1,100);
 light.position.set(5,5,5);
-scene.add(light);
-function animate(){requestAnimationFrame(animate);ring.rotation.x+=0.01;ring.rotation.y+=0.01;renderer.render(scene,camera);}
-animate();
+ringScene.add(light);
+const ambient=new THREE.AmbientLight(0x404040);
+ringScene.add(ambient);
+ringCamera.position.z=5;
 
-// Click anillo -> mostrar sección 2
-ringCanvas.addEventListener('click',()=>{showSection(1);document.getElementById('weddingMusic').pause();document.getElementById('eternallyMusic').play();});
-</script>
+function animateRing(){requestAnimationFrame(animateRing);ring.rotation.y+=0.01;ringRenderer.render(ringScene,ringCamera);}
+animateRing();
 
-</body>
-</html>
+// Click anillo para pasar a la siguiente sección
+ringCanvas.addEventListener('click',()=>{showSection(1);document.getElementById('weddingMusic').pause();document.getElementById('eternallyMusic').play
  
