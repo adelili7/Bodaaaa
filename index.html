@@ -8,18 +8,25 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <style>
     *{margin:0;padding:0;box-sizing:border-box;font-family:'Playfair Display', serif;}
-    body{overflow-x:hidden;}
+    body{overflow-x:hidden;background:#f0f0f0;}
     .section{width:100vw;height:100vh;display:flex;justify-content:center;align-items:center;flex-direction:column;position:relative;background-size:cover;background-position:center;transition:opacity 1s;}
     .hidden{opacity:0;pointer-events:none;position:absolute;}
     h1,h2,h3,p{color:#2c2c2c;text-align:center;}
-    h1{font-family:'Great Vibes', cursive;font-size:4rem;text-shadow:0 0 10px #fff,0 0 20px #ff9,0 0 30px #f0f;}
-    h2{font-size:2.5rem;text-shadow:0 0 5px #fff,0 0 10px #ff9;}
-    .btn-music{position:absolute;top:20px;right:20px;padding:10px 15px;background:#fff;border-radius:10px;cursor:pointer;}
+    h1{font-family:'Great Vibes', cursive;font-size:6vw;text-shadow:0 0 10px #fff,0 0 20px #c0f0ff,0 0 30px #00f;}
+    h2{font-family:'Playfair Display', serif;font-size:4vw;text-shadow:0 0 5px #fff,0 0 10px #00f;}
+    h3{font-size:3vw;}
+    p{font-size:2.5vw;line-height:1.5;}
+    .btn-music{position:absolute;top:20px;right:20px;padding:10px 15px;background:#fff;border-radius:10px;cursor:pointer;z-index:1000;}
     .collage{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;width:80%;margin-top:20px;}
     .collage img{width:100%;border-radius:10px;}
     .shine{animation:shine 2s infinite;}
-    @keyframes shine{0%,100%{text-shadow:0 0 5px #fff,0 0 10px #ff9,0 0 15px #f0f;}50%{text-shadow:0 0 10px #fff,0 0 20px #ff9,0 0 25px #f0f;}}
-    .whatsapp-btn{display:inline-block;margin:5px;padding:10px 15px;background:#25D366;color:#fff;border-radius:10px;text-decoration:none;font-weight:bold;}
+    @keyframes shine{
+        0%,100%{text-shadow:0 0 5px #fff,0 0 10px #0ff,0 0 15px #00f;}
+        50%{text-shadow:0 0 10px #fff,0 0 20px #0ff,0 0 25px #00f;}
+    }
+    input,textarea{font-family:'Playfair Display', serif;}
+    .whatsapp-btn{margin:5px;padding:10px 20px;background:#25d366;color:white;border:none;border-radius:10px;font-size:2.5vw;cursor:pointer;text-decoration:none;}
+    @media(max-width:768px){h1{font-size:10vw;} h2{font-size:6vw;} p{font-size:4vw;}}
 </style>
 </head>
 <body>
@@ -28,11 +35,12 @@
 <div id="section1" class="section" style="background-image:url('fondo_floral2.jpg');">
     <canvas id="ringCanvas" style="width:300px;height:300px;"></canvas>
     <h1 class="shine">¡Sí acepto!</h1>
+    <button class="btn-music" id="toggleMusic">⏯️ Música</button>
 </div>
 
 <!-- SECCION CORAZON -->
 <div id="section2" class="section hidden" style="background-image:url('fondo_floral1.jpg');">
-    <h2 class="shine">Proverbios 18:22 - El que halla esposa halla el bien, y alcanza la benevolencia de Jehová.</h2>
+    <h2 class="shine">Proverbios 18:22</h2>
     <canvas id="heartCanvas" style="width:200px;height:200px;"></canvas>
 </div>
 
@@ -44,14 +52,15 @@
 </div>
 
 <!-- SECCION DETALLES -->
-<div id="section4" class="section hidden" style="background-image:url('fondo_floral2.jpg');padding:20px;overflow-y:auto;">
-    <h2>Los papás de la novia: Eva Aguilar Rendón y Pedro Pérez Hernández</h2>
-    <h2>Los papás del novio: Saray Hernández Santana y Pablo Tinoco Carranza (finado)</h2>
-    <p>Tienen el honor de invitarles a compartir la dicha de sus amados hijos</p>
+<div id="section4" class="section hidden" style="background-image:url('fondo_floral2.jpg');overflow-y:auto;padding:20px;">
+    <h2 class="shine">Tienen el honor de invitarles a compartir la dicha de sus amados hijos</h2>
+    <h3>Los papás de la novia: Eva Aguilar Rendón y Pedro Pérez Hernández</h3>
+    <h3>Los papás del novio: Saray Hernández Santana y Pablo Tinoco Carranza (finado)</h3>
     <p>Frase bíblica: Mateo 19:6</p>
-    <h2>Itinerario:</h2>
+    <h2>Itinerario</h2>
     <p>⛪ Iglesia Cristiana "Palabra de vida" - 2pm <a href="https://maps.app.goo.gl/4wR8NornyG7r3Ava8" target="_blank">Mapa</a></p>
     <p>🎉 Recepción: Jardín "El Abuelo" - 4pm <a href="https://www.bing.com/maps?&ty=18&q=Jard%C3%ADn%20El%20Abuelo%2C%20Tlaquiltenango%2C%20Morelos%2C%20M%C3%A9xico" target="_blank">Mapa</a></p>
+    
     <h2>Nuestros hermosos momentos</h2>
     <div class="collage">
         <img src="momento1.jpg">
@@ -61,70 +70,58 @@
     </div>
     <h2>Tu amor es lo que he anhelado y el regalo que Dios me ha dado</h2>
     <img src="momento5.jpg" style="width:300px;border-radius:15px;">
-    <h2>Código de vestimenta formal: Dejemos el blanco para la novia (tonos azules, verdes, plateados, grises)</h2>
+    
+    <h2>Código de vestimenta formal:</h2>
+    <p>Dejemos el blanco para la novia, tonos sugeridos: azules, verdes, plateados, grises</p>
+    
     <h2>Confirma tu asistencia</h2>
     <input type="number" placeholder="Número de personas" style="padding:10px;border-radius:10px;margin:10px;">
+    
     <h2>Buenos deseos</h2>
     <textarea placeholder="Escribe tu mensaje" style="padding:10px;border-radius:10px;width:80%;height:80px;"></textarea>
+    
     <h2>Comparte tus fotos del evento</h2>
     <input type="file" accept="image/*" multiple style="margin:10px;">
-    <div>
-        <a class="whatsapp-btn" href="https://wa.me/5217774914500" target="_blank">WhatsApp Abril</a>
-        <a class="whatsapp-btn" href="https://wa.me/5217341123645" target="_blank">WhatsApp Pablo</a>
-    </div>
+    
+    <h2>WhatsApp de los novios</h2>
+    <a href="https://wa.me/5217774914500" class="whatsapp-btn" target="_blank">Abril</a>
+    <a href="https://wa.me/5217341123645" class="whatsapp-btn" target="_blank">Pablo</a>
+    
     <h2>¡Gracias por acompañarnos en nuestra historia de Amor!</h2>
 </div>
 
-<audio id="weddingMusic" src="marcha_nupcial.mp3" autoplay></audio>
+<audio id="weddingMusic" src="marcha_nupcial.mp3" autoplay loop></audio>
 <audio id="eternallyMusic" src="eternamente.mp3"></audio>
 
 <script>
+// Secciones
 const sections=[document.getElementById('section1'),document.getElementById('section2'),document.getElementById('section3'),document.getElementById('section4')];
 let currentSection=0;
-function showSection(index){sections.forEach((sec,i)=>{sec.classList.add('hidden');});sections[index].classList.remove('hidden');}
+
+// Mostrar sección
+function showSection(index){
+    sections.forEach(sec=>sec.classList.add('hidden'));
+    sections[index].classList.remove('hidden');
+}
+
+// Inicia con portada
 showSection(0);
 
-// Anillo 3D
+// Toggle música
+const weddingMusic=document.getElementById('weddingMusic');
+document.getElementById('toggleMusic').addEventListener('click',()=>{
+    if(weddingMusic.paused) weddingMusic.play();
+    else weddingMusic.pause();
+});
+
+// THREE.JS - Anillo 3D
 const ringCanvas=document.getElementById('ringCanvas');
 const ringScene=new THREE.Scene();
 const ringCamera=new THREE.PerspectiveCamera(75,1,0.1,1000);
 const ringRenderer=new THREE.WebGLRenderer({canvas:ringCanvas,alpha:true});
 ringRenderer.setSize(300,300);
-const ringGeometry=new THREE.TorusGeometry(1,0.2,16,100);
-const ringMaterial=new THREE.MeshPhongMaterial({color:0xc0c0c0,shininess:100,emissive:0x8888ff,specular:0xffffff});
-const ring=new THREE.Mesh(ringGeometry,ringMaterial);
-ringScene.add(ring);
-const heartShape=new THREE.Shape();
-heartShape.moveTo(0,0.5);
-heartShape.bezierCurveTo(0,0.5, -0.5,0, 0, -0.5);
-heartShape.bezierCurveTo(0.5,0,0,0.5,0,0.5);
-const heartGeometry=new THREE.ExtrudeGeometry(heartShape,{depth:0.2,bevelEnabled:true,bevelThickness:0.05,bevelSize:0.05});
-const heartMaterial=new THREE.MeshPhongMaterial({color:0x0000ff,shininess:200,emissive:0x00ffff});
-const heart=new THREE.Mesh(heartGeometry,heartMaterial);
-heart.position.set(0,0,0.5);
-ring.add(heart);
-const ringLight=new THREE.PointLight(0xffffff,1);
-ringLight.position.set(5,5,5);
-ringScene.add(ringLight);
-ringCamera.position.z=3;
-function animateRing(){requestAnimationFrame(animateRing);ring.rotation.y+=0.01;ring.rotation.x+=0.005;ringRenderer.render(ringScene,ringCamera);}
-animateRing();
-ringCanvas.addEventListener('click',()=>{document.getElementById('weddingMusic').pause();document.getElementById('eternallyMusic').play();showSection(1);});
 
-// Corazón 3D
-const heartCanvas=document.getElementById('heartCanvas');
-const heartScene=new THREE.Scene();
-const heartCamera=new THREE.PerspectiveCamera(75,1,0.1,1000);
-const heartRenderer=new THREE.WebGLRenderer({canvas:heartCanvas,alpha:true});
-heartRenderer.setSize(200,200);
-const heartMesh=new THREE.Mesh(heartGeometry,heartMaterial);
-heartScene.add(heartMesh);
-heartCamera.position.z=3;
-function animateHeart(){requestAnimationFrame(animateHeart);heartMesh.rotation.y+=0.01;heartMesh.rotation.x=Math.sin(Date.now()*0.001)*0.2;heartRenderer.render(heartScene,heartCamera);}
-animateHeart();
-heartCanvas.addEventListener('click',()=>{showSection(2);});
-sections[2].addEventListener('click',()=>{showSection(3);});
-</script>
-</body>
-</html>
+const ringGeometry=new THREE.TorusGeometry(1,0.2,16,100);
+const ringMaterial=new THREE.MeshPhongMaterial({color:0xc0c0c0,shininess:150,emissive:0x8888ff,specular:0xffffff});
+const ring
  
