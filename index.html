@@ -7,51 +7,42 @@
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <style>
-/* RESET Y ESTILOS BASE */
-* {margin:0; padding:0; box-sizing:border-box; font-family:'Playfair Display', serif;}
-body {overflow-x:hidden; background:#f5f5f5;}
-
-/* SECCIONES */
-.section {width:100vw; height:100vh; display:flex; justify-content:center; align-items:center; flex-direction:column; position:relative; background-size:cover; background-position:center; transition:opacity 1s;}
-.hidden {opacity:0; pointer-events:none; position:absolute;}
-
-/* TIPOGRAFÍA ROMÁNTICA Y BRILLO */
-h1, h2, h3, p {text-align:center; color:#fff;}
-h1 {font-family:'Great Vibes', cursive; font-size:4rem; text-shadow:0 0 10px #fff,0 0 20px #ffc0cb,0 0 30px #ff69b4;}
-h2 {font-family:'Great Vibes', cursive; font-size:2.5rem; text-shadow:0 0 8px #fff,0 0 16px #ffb6c1; line-height:1.4; margin:10px;}
-h3 {font-family:'Great Vibes', cursive; font-size:2rem; text-shadow:0 0 5px #fff,0 0 10px #ff69b4; line-height:1.5; margin:5px;}
-p {font-size:1.5rem; line-height:1.8; color:#fff; text-shadow:0 0 5px #fff,0 0 10px #ff69b4; margin:10px;}
-
-.btn-music {position:absolute; top:20px; right:20px; padding:10px 15px; background:#fff; border-radius:10px; cursor:pointer;}
-.collage {display:grid; grid-template-columns:repeat(2,1fr); gap:10px; width:80%; margin-top:20px;}
-.collage img {width:100%; border-radius:10px;}
-.shine {animation:shine 2s infinite;}
-@keyframes shine {0%,100%{text-shadow:0 0 5px #fff,0 0 10px #ff69b4,0 0 15px #ffc0cb;}50%{text-shadow:0 0 10px #fff,0 0 20px #ff69b4,0 0 25px #ffc0cb;}}
-
-.parents-container {display:flex; justify-content:space-around; width:80%; margin-top:30px;}
-.parents {display:flex; flex-direction:column; align-items:center;}
-
-input, textarea {font-family:'Playfair Display', serif; padding:10px; border-radius:10px; margin:10px;}
-a {color:#ffebcd; text-decoration:underline;}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Playfair Display', serif;}
+body{overflow-x:hidden;background:#f5f5f5;}
+.section{width:100vw;height:100vh;display:flex;justify-content:center;align-items:center;flex-direction:column;position:relative;background-size:cover;background-position:center;transition:opacity 1s;}
+.hidden{opacity:0;pointer-events:none;position:absolute;}
+h1,h2,h3,p,a{color:#fff;text-align:center;text-decoration:none;}
+h1{font-family:'Great Vibes', cursive;font-size:4rem;text-shadow:0 0 10px #fff,0 0 20px #ffc0cb,0 0 30px #ff69b4;}
+h2{font-family:'Great Vibes', cursive;font-size:2.5rem;text-shadow:0 0 10px #fff,0 0 20px #ffb6c1;line-height:1.4;margin:10px 0;}
+h3{font-family:'Great Vibes', cursive;font-size:2rem;text-shadow:0 0 8px #fff,0 0 16px #ffb6c1;line-height:1.5;margin:5px 0;}
+p{font-size:1.5rem;line-height:1.8;margin:5px 0;text-shadow:0 0 5px #fff,0 0 10px #ff69b4;}
+.btn-music{position:absolute;top:20px;right:20px;padding:10px 15px;background:#fff;border-radius:10px;cursor:pointer;color:#000;}
+.collage{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;width:80%;margin-top:20px;}
+.collage img{width:100%;border-radius:10px;}
+.shine{animation:shine 2s infinite;}
+@keyframes shine{0%,100%{text-shadow:0 0 5px #fff,0 0 10px #ff69b4,0 0 15px #ffc0cb;}50%{text-shadow:0 0 10px #fff,0 0 20px #ff69b4,0 0 25px #ffc0cb;}}
+.parents-container{display:flex;justify-content:space-around;width:80%;margin-top:30px;}
+.parents{display:flex;flex-direction:column;align-items:center;}
+input,textarea{font-family:'Playfair Display', serif;padding:10px;border-radius:10px;margin:10px;}
 </style>
 </head>
 <body>
 
-<!-- SECCIÓN PORTADA -->
+<!-- SECCION PORTADA -->
 <div id="section1" class="section" style="background-image:url('fondo_floral2.jpg');">
     <canvas id="ringCanvas" style="width:300px;height:300px;"></canvas>
     <h1 class="shine">¡Sí acepto!</h1>
 </div>
 
-<!-- SECCIÓN PROVERBIOS -->
+<!-- SECCION PROVERBIOS -->
 <div id="section2" class="section hidden" style="background-image:url('fondo_floral1.jpg');">
-    <h2 class="shine" style="font-size:2.5rem; max-width:80%; line-height:1.6;">Proverbios 18:22 - Quien halla esposa halla el bien, y alcanza la benevolencia de Jehová.</h2>
+    <h2 class="shine">Proverbios 18:22 - Quien halla esposa halla el bien, y alcanza la benevolencia de Jehová.</h2>
     <canvas id="heartCanvas" style="width:200px;height:200px;margin-top:20px;"></canvas>
 </div>
 
-<!-- SECCIÓN PADRES -->
+<!-- SECCION PADRES -->
 <div id="section3" class="section hidden" style="background-image:url('fondo_floral3.jpg');">
-    <h2 class="shine" style="font-size:3rem;">Nuestros padres</h2>
+    <h2 class="shine">Nuestros padres</h2>
     <div class="parents-container">
         <div class="parents">
             <h3>Eva Aguilar Rendón</h3>
@@ -62,16 +53,16 @@ a {color:#ffebcd; text-decoration:underline;}
             <h3>Pablo Tinoco Carranza (finado)</h3>
         </div>
     </div>
-    <p style="font-size:1.5rem; line-height:2rem; max-width:80%; margin-top:20px;">“Tienen el honor de invitarles a compartir la dicha de sus amados hijos”</p>
+    <p>“Tienen el honor de invitarles a compartir la dicha de sus amados hijos”</p>
 </div>
 
-<!-- SECCIÓN NOVIOS -->
+<!-- SECCION NOVIOS -->
 <div id="section4" class="section hidden" style="background-image:url('fondo_floral2.jpg');">
     <h2 class="shine">Abril Pérez Aguilar & Pablo Eliel Tinoco Hernández</h2>
     <img src="foto1.jpg" alt="Foto1" style="width:300px;border-radius:15px;margin-top:20px;">
 </div>
 
-<!-- SECCIÓN DETALLES -->
+<!-- SECCION DETALLES -->
 <div id="section5" class="section hidden" style="background-image:url('fondo_floral2.jpg');">
     <h2>Itinerario:</h2>
     <p>⛪ Iglesia Cristiana "Palabra de vida" - 2pm <a href="https://maps.app.goo.gl/4wR8NornyG7r3Ava8" target="_blank">Mapa</a></p>
@@ -89,52 +80,41 @@ a {color:#ffebcd; text-decoration:underline;}
     <h2>Confirma tu asistencia</h2>
     <input type="number" placeholder="Número de personas">
     <h2>Buenos deseos</h2>
-    <textarea placeholder="Escribe tu mensaje"></textarea>
+    <textarea placeholder="Escribe tu mensaje" style="width:80%;height:80px;"></textarea>
     <h2>Comparte tus fotos del evento</h2>
     <input type="file" accept="image/*" multiple>
     <h2><a href="https://wa.me/5217774914500" target="_blank">WhatsApp Abril</a> | <a href="https://wa.me/5217341123645" target="_blank">WhatsApp Pablo</a></h2>
     <h2>¡Gracias por acompañarnos en nuestra historia de Amor!</h2>
 </div>
 
-<!-- AUDIOS -->
 <audio id="weddingMusic" src="marcha_nupcial.mp3" autoplay></audio>
 <audio id="eternallyMusic" src="eternamente.mp3"></audio>
 
 <script>
-// TRANSICIÓN ENTRE SECCIONES
 const sections=[document.getElementById('section1'),document.getElementById('section2'),document.getElementById('section3'),document.getElementById('section4'),document.getElementById('section5')];
 let currentSection=0;
-function showSection(index){
-    sections.forEach(sec=>sec.classList.add('hidden'));
-    sections[index].classList.remove('hidden');
-}
+function showSection(index){sections.forEach(s=>s.classList.add('hidden'));sections[index].classList.remove('hidden');}
+showSection(0);
 
-// ANILLO 3D GIRATORIO CON THREE.JS
+// Ring 3D
 const ringCanvas=document.getElementById('ringCanvas');
-const ringScene=new THREE.Scene();
-const ringCamera=new THREE.PerspectiveCamera(75,1,0.1,1000);
-const ringRenderer=new THREE.WebGLRenderer({canvas:ringCanvas,alpha:true});
-ringRenderer.setSize(300,300);
-const ringGeometry=new THREE.TorusGeometry(1,0.2,16,100);
-const ringMaterial=new THREE.MeshPhongMaterial({color:0xc0c0c0, shininess:100, emissive:0x8888ff, specular:0xffffff});
-const ring=new THREE.Mesh(ringGeometry,ringMaterial);
-ringScene.add(ring);
-// LUZ
-const ringLight=new THREE.PointLight(0xffffff,1);
-ringLight.position.set(5,5,5);
-ringScene.add(ringLight);
-ringCamera.position.z=5;
-// ANIMACIÓN
-function animateRing(){
-    requestAnimationFrame(animateRing);
-    ring.rotation.x +=0.01;
-    ring.rotation.y +=0.01;
-    ringRenderer.render(ringScene, ringCamera);
-}
-animateRing();
+const scene=new THREE.Scene();
+const camera=new THREE.PerspectiveCamera(75,1,0.1,1000);
+const renderer=new THREE.WebGLRenderer({canvas:ringCanvas,alpha:true});
+renderer.setSize(300,300);
+camera.position.z=5;
+const geometry=new THREE.TorusGeometry(1,0.2,16,100);
+const material=new THREE.MeshPhongMaterial({color:0xc0c0c0,shininess:100,emissive:0x8888ff,specular:0xffffff});
+const ring=new THREE.Mesh(geometry,material);
+scene.add(ring);
+const light=new THREE.PointLight(0xffffff,1);
+light.position.set(5,5,5);
+scene.add(light);
+function animate(){requestAnimationFrame(animate);ring.rotation.x+=0.01;ring.rotation.y+=0.01;renderer.render(scene,camera);}
+animate();
 
-// CLICK PARA PASAR A LA SIGUIENTE SECCIÓN
-ringCanvas.addEventListener('click',()=>{showSection(1); document.getElementById('weddingMusic').pause(); document.getElementById('eternallyMusic').play();});
+// Click anillo -> mostrar sección 2
+ringCanvas.addEventListener('click',()=>{showSection(1);document.getElementById('weddingMusic').pause();document.getElementById('eternallyMusic').play();});
 </script>
 
 </body>
