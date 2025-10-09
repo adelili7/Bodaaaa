@@ -1,67 +1,307 @@
-<!-- Sección anillo animado 2D -->
-<section id="section1" class="section active" style="background-image:url('fondo_floral4.jpg')">
-  <div class="overlay"></div>
-  <div class="centered">
-    <canvas id="ringCanvas2D" width="560" height="560" aria-label="Anillo 2D"></canvas>
-    <h1 id="acceptText">¡Sí acepto!</h1>
+ <!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Portada - Anillo 2D brillante (Prueba)</title>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Great+Vibes&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<style>
+  :root{--accent:#6fb3ff;--bg:#fff}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%;width:100%;font-family:PlayfairDisplay,serif;background:var(--bg);overflow:hidden}
+  /* particles canvas full screen */
+  #particleCanvas{position:fixed;inset:0;z-index:1;pointer-events:none}
+  /* ring canvas area centered */
+  .hero{position:relative;z-index:10;height:100vh;display:flex;align-items:center;justify-content:center;flex-direction:column;background-image:url('fondo_floral4.jpg');background-size:cover;background-position:center;}
+  #ringCanvas2D{width:560px;height:560px;max-width:78vw;max-height:78vw;border-radius:50%;background:transparent;display:block;cursor:none;box-shadow:0 10px 40px rgba(0,0,0,0.12);backface-visibility:hidden}
+  h1#acceptText{font-family:'Dancing Script',cursive;font-size:6.6vw;color:var(--accent);text-shadow:0 0 18px rgba(255,255,255,0.95);cursor:pointer;margin-top:18px;z-index:12}
+  .controls{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);z-index:12;display:flex;gap:12px}
+  .btn{background:rgba(255,255,255,0.92);border:none;padding:10px 16px;border-radius:999px;cursor:pointer;font-family:'Great Vibes',cursive;box-shadow:0 6px 18px rgba(0,0,0,0.12)}
+  /* magic cursor */
+  .magic-cursor{position:fixed;width:26px;height:26px;border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);mix-blend-mode:screen}
+  /* next section placeholder */
+  section#nextSection{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:#fafafa;transform:translateX(100%);z-index:5}
+  section#nextSection.active{transform:translateX(0)}
+  @media(max-width:600px){
+    h1#acceptText{font-size:16vw}
+    #ringCanvas2D{max-width:86vw;max-height:86vw}
+  }
+</style>
+</head>
+<body>
+
+<canvas id="particleCanvas"></canvas>
+
+<div class="hero" id="hero">
+  <canvas id="ringCanvas2D" width="560" height="560" aria-label="Anillo 2D"></canvas>
+  <h1 id="acceptText">¡Sí acepto!</h1>
+</div>
+
+<nav class="controls">
+  <button class="btn" id="prevBtn" style="display:none">Anterior</button>
+  <button class="btn" id="nextBtn">Siguiente</button>
+</nav>
+
+<!-- placeholder next section to test slide -->
+<section id="nextSection">
+  <div style="text-align:center;padding:24px">
+    <h2 style="font-family:'Great Vibes',cursive;font-size:5vw;color:#1e90ff">Página siguiente (prueba)</h2>
+    <p style="margin-top:8px">Aquí irá el resto de las secciones — prueba la transición.</p>
   </div>
 </section>
 
-<style>
-#ringCanvas2D{width:560px;height:560px;max-width:85vw;max-height:85vw;border-radius:50%;background:transparent;display:block;cursor:none;}
-.magic-cursor{position:fixed;width:24px;height:24px;border-radius:50%;pointer-events:none;mix-blend-mode:screen;box-shadow:0 0 12px 4px #ffffff;z-index:2000;}
-</style>
+<!-- audios -->
+<audio id="weddingMusic" src="marcha_nupcial.mp3" preload="auto" loop></audio>
+<audio id="eternallyMusic" src="eternamente.mp3" preload="auto" loop></audio>
+
+<!-- magic cursor element -->
+<div id="magicCursor" class="magic-cursor"></div>
 
 <script>
-// Canvas 2D para anillo
-const ringCanvas=document.getElementById('ringCanvas2D');
-const ctx=ringCanvas.getContext('2d');
-const centerX=ringCanvas.width/2;
-const centerY=ringCanvas.height/2;
-let ringRotation=0;
-
-// Partículas brillantes en el anillo
-const sparkleCount=60;
-const sparkles=Array.from({length:sparkleCount}).map(()=>{
-  return {
-    angle: Math.random()*Math.PI*2,
-    radius: 110 + Math.random()*15,
-    speed: 0.01 + Math.random()*0.02,
-    size: Math.random()*2+1
-  };
-});
-
-function drawRing(){
-  ctx.clearRect(0,0,ringCanvas.width,ringCanvas.height);
-
-  // Anillo plateado base
-  const grad=ctx.createRadialGradient(centerX,centerY,100,centerX,centerY,140);
-  grad.addColorStop(0,'#ffffff'); grad.addColorStop(0.3,'#dddddd'); grad.addColorStop(1,'#aaaaaa');
-  ctx.strokeStyle=grad;
-  ctx.lineWidth=12; ctx.beginPath(); ctx.arc(centerX,centerY,120,0,Math.PI*2); ctx.stroke();
-
-  // Destellos animados
-  sparkles.forEach(s=>{
-    s.angle+=s.speed;
-    const x=centerX+Math.cos(s.angle)*s.radius;
-    const y=centerY+Math.sin(s.angle)*s.radius;
-    const shine=ctx.createRadialGradient(x,y,0,x,y,s.size*2);
-    shine.addColorStop(0,'rgba(255,255,255,1)');
-    shine.addColorStop(0.5,'rgba(255,255,255,0.4)');
-    shine.addColorStop(1,'rgba(255,255,255,0)');
-    ctx.fillStyle=shine;
-    ctx.beginPath(); ctx.arc(x,y,s.size,0,Math.PI*2); ctx.fill();
-  });
-
-  ringRotation+=0.002;
-  requestAnimationFrame(drawRing);
+/* ========== PARTICLES (full screen warm sparkle mix) ========== */
+const pCanvas = document.getElementById('particleCanvas');
+const pCtx = pCanvas.getContext('2d');
+function fitParticles(){
+  pCanvas.width = window.innerWidth;
+  pCanvas.height = window.innerHeight;
 }
-drawRing();
+fitParticles();
+window.addEventListener('resize', fitParticles);
 
-// Cursor mágico
-const cursor=document.createElement('div'); cursor.classList.add('magic-cursor'); document.body.appendChild(cursor);
-document.addEventListener('mousemove',e=>{
-  gsap.to(cursor,{x:e.clientX-12,y:e.clientY-12,duration:0.2,ease:'power2.out'});
+const palettes = [
+  '255,255,255',   // white
+  '225,225,230',   // silver-ish
+  '170,205,255',   // light blue
+  '242,201,193'    // rose-gold warm
+];
+const particleCount = Math.max(30, Math.floor(window.innerWidth / 20));
+const particles = Array.from({length: particleCount}).map(()=>{
+  return {
+    x: Math.random()*pCanvas.width,
+    y: Math.random()*pCanvas.height,
+    r: 0.6 + Math.random()*2.2,
+    vx: (Math.random()-0.5)*0.3,
+    vy: (Math.random()-0.5)*0.2,
+    color: palettes[Math.floor(Math.random()*palettes.length)],
+    phase: Math.random()*Math.PI*2,
+    speed: 0.2 + Math.random()*0.6
+  }
 });
+
+function drawParticles(){
+  pCtx.clearRect(0,0,pCanvas.width,pCanvas.height);
+  const now = Date.now()/1000;
+  for(const p of particles){
+    p.x += p.vx;
+    p.y += Math.sin(now + p.phase)*0.4 + p.vy;
+    // wrap
+    if(p.x < -40) p.x = pCanvas.width+40;
+    if(p.x > pCanvas.width+40) p.x = -40;
+    if(p.y < -40) p.y = pCanvas.height+40;
+    if(p.y > pCanvas.height+40) p.y = -40;
+
+    const g = pCtx.createRadialGradient(p.x,p.y,0,p.x,p.y,p.r*8);
+    g.addColorStop(0, `rgba(${p.color},${0.98})`);
+    g.addColorStop(0.35, `rgba(255,255,255,0.7)`);
+    g.addColorStop(1, 'rgba(255,255,255,0)');
+    pCtx.fillStyle = g;
+    pCtx.fillRect(p.x - p.r*8, p.y - p.r*8, p.r*16, p.r*16);
+  }
+  requestAnimationFrame(drawParticles);
+}
+drawParticles();
+
+/* ========== RING 2D (canvas) ========== */
+const ringCanvas = document.getElementById('ringCanvas2D');
+const ctx = ringCanvas.getContext('2d');
+
+function DPRResizeCanvas(canvas) {
+  const DPR = Math.min(window.devicePixelRatio || 1, 2);
+  const cssW = canvas.clientWidth;
+  const cssH = canvas.clientHeight;
+  canvas.width = Math.round(cssW * DPR);
+  canvas.height = Math.round(cssH * DPR);
+  canvas.style.width = cssW + 'px';
+  canvas.style.height = cssH + 'px';
+  ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+}
+DPRResizeCanvas(ringCanvas);
+window.addEventListener('resize', ()=>DPRResizeCanvas(ringCanvas));
+
+const cx = ringCanvas.width / (window.devicePixelRatio || 1) / 2;
+const cy = ringCanvas.height / (window.devicePixelRatio || 1) / 2;
+let animTime = 0;
+
+// sparkles around ring
+const numSparkles = 64;
+const sparkles = [];
+for(let i=0;i<numSparkles;i++){
+  sparkles.push({
+    a: Math.random()*Math.PI*2,
+    r: 110 + Math.random()*18,
+    speed: 0.012 + Math.random()*0.02,
+    size: 0.6 + Math.random()*2.2,
+    phase: Math.random()*Math.PI*2
+  });
+}
+
+// heart-diamond parameters (will orbit slightly off-center along ring)
+const diamond = {
+  angle: 0,
+  orbitR: 110,
+  size: 22, // visual size in px
+  spin: 0
+};
+
+function drawRingFrame(){
+  const w = ringCanvas.clientWidth;
+  const h = ringCanvas.clientHeight;
+  animTime += 1/60;
+  // clear
+  ctx.clearRect(0,0,w,h);
+
+  // background subtle glow under ring
+  const glow = ctx.createRadialGradient(w/2, h/2, 60, w/2, h/2, 220);
+  glow.addColorStop(0, 'rgba(255,255,255,0.06)');
+  glow.addColorStop(1, 'rgba(255,255,255,0)');
+  ctx.fillStyle = glow;
+  ctx.fillRect(0,0,w,h);
+
+  // ring base - silver chrome look
+  const ringRadius = Math.min(w,h) * 0.38; // ~120 on 560
+  ctx.lineWidth = Math.max(8, ringRadius*0.09);
+  // gradient for chrome
+  const rg = ctx.createLinearGradient(w*0.25,h*0.25,w*0.75,h*0.75);
+  rg.addColorStop(0, '#ffffff');
+  rg.addColorStop(0.3, '#e9eef8');
+  rg.addColorStop(0.55, '#cfcfcf');
+  rg.addColorStop(1, '#b0b7c5');
+  ctx.strokeStyle = rg;
+  ctx.beginPath();
+  ctx.arc(w/2, h/2, ringRadius, 0, Math.PI*2);
+  ctx.stroke();
+
+  // inner subtle bevel
+  ctx.beginPath();
+  ctx.arc(w/2, h/2, ringRadius - ctx.lineWidth*0.6, 0, Math.PI*2);
+  ctx.strokeStyle = 'rgba(255,255,255,0.12)';
+  ctx.lineWidth = Math.max(2, ctx.lineWidth*0.18);
+  ctx.stroke();
+
+  // update and draw sparkles
+  for(const s of sparkles){
+    s.a += s.speed;
+    const x = w/2 + Math.cos(s.a) * (ringRadius + s.r - ringRadius*0.02);
+    const y = h/2 + Math.sin(s.a) * (ringRadius + s.r - ringRadius*0.02);
+    const shine = ctx.createRadialGradient(x,y,0,x,y,s.size*3);
+    shine.addColorStop(0, 'rgba(255,255,255,1)');
+    shine.addColorStop(0.35, 'rgba(255,255,255,0.5)');
+    shine.addColorStop(1, 'rgba(255,255,255,0)');
+    ctx.fillStyle = shine;
+    ctx.beginPath();
+    ctx.arc(x,y, s.size, 0, Math.PI*2);
+    ctx.fill();
+  }
+
+  // diamond orbit
+  diamond.angle += 0.01;
+  diamond.spin += 0.06;
+  const dx = w/2 + Math.cos(diamond.angle) * (ringRadius + 2);
+  const dy = h/2 + Math.sin(diamond.angle) * (ringRadius + 2);
+
+  // draw small glow for diamond
+  const dGlow = ctx.createRadialGradient(dx,dy,0,dx,dy,diamond.size*3);
+  dGlow.addColorStop(0, 'rgba(127,185,255,0.45)');
+  dGlow.addColorStop(1, 'rgba(255,255,255,0)');
+  ctx.fillStyle = dGlow;
+  ctx.beginPath();
+  ctx.arc(dx,dy, diamond.size*2.4, 0, Math.PI*2);
+  ctx.fill();
+
+  // draw heart-shaped diamond (simple polygon heart)
+  ctx.save();
+  ctx.translate(dx,dy);
+  ctx.rotate(diamond.spin);
+  // heart path
+  ctx.beginPath();
+  const s = diamond.size*0.7;
+  ctx.moveTo(0, -s*1.4);
+  ctx.bezierCurveTo(-s*1.2, -s*1.8, -s*2.4, -s*0.2, 0, s*1.8);
+  ctx.bezierCurveTo(s*2.4, -s*0.2, s*1.2, -s*1.8, 0, -s*1.4);
+  // fill with luminous blue
+  const hg = ctx.createLinearGradient(-s, -s, s, s);
+  hg.addColorStop(0, '#cfe9ff');
+  hg.addColorStop(0.4, '#7fb9ff');
+  hg.addColorStop(1, '#7fb9ff');
+  ctx.fillStyle = hg;
+  ctx.fill();
+  // highlight
+  ctx.beginPath();
+  ctx.moveTo(-s*0.1, -s*1.1);
+  ctx.quadraticCurveTo(s*0.4, -s*0.8, s*0.6, -s*0.2);
+  ctx.fillStyle = 'rgba(255,255,255,0.32)';
+  ctx.fill();
+  ctx.restore();
+
+  requestAnimationFrame(drawRingFrame);
+}
+drawRingFrame();
+
+/* ========== MAGIC CURSOR ========== */
+const magicCursor = document.getElementById('magicCursor');
+magicCursor.style.boxShadow = '0 0 18px 6px rgba(255,255,255,0.9), 0 0 36px 12px rgba(127,185,255,0.18)';
+magicCursor.style.background = 'radial-gradient(circle at 30% 30%, rgba(255,255,255,0.9), rgba(127,185,255,0.2) 40%, rgba(255,255,255,0.02))';
+
+let cursorX = window.innerWidth/2, cursorY = window.innerHeight/2;
+document.addEventListener('mousemove', (e)=>{
+  cursorX = e.clientX; cursorY = e.clientY;
+  gsap.to(magicCursor, {x: cursorX, y: cursorY, duration: 0.18, ease: 'power2.out'});
+});
+
+/* small pulse on hover of "¡Sí acepto!" */
+const acceptBtn = document.getElementById('acceptText');
+acceptBtn.addEventListener('mouseenter', ()=> gsap.to(magicCursor, {scale:1.6, duration:0.18}));
+acceptBtn.addEventListener('mouseleave', ()=> gsap.to(magicCursor, {scale:1, duration:0.18}));
+
+/* ========== AUDIO BEHAVIOR ========== */
+const weddingMusic = document.getElementById('weddingMusic');
+const eternallyMusic = document.getElementById('eternallyMusic');
+// try autoplay on load; may be blocked in many browsers
+window.addEventListener('load', ()=> {
+  weddingMusic.play().catch(()=>{ /* fallback: user must tap to start */ });
+});
+
+// On click of accept: stop wedding, try play eternally
+acceptBtn.addEventListener('click', async ()=>{
+  try { weddingMusic.pause(); } catch(e) {}
+  try { await eternallyMusic.play(); } catch(e) { console.warn('Autoplay eternally blocked'); }
+  // ring "open" animation: brief scale/pulse
+  gsap.fromTo(ringCanvas, {scale:1}, {scale:1.02, duration:0.28, yoyo:true, repeat:1, ease:'sine.inOut'});
+  // small sparkle burst
+  for(let i=0;i<8;i++){
+    const p = {x: Math.random()*window.innerWidth, y: Math.random()*window.innerHeight};
+    const el = document.createElement('div');
+    el.style.position='fixed'; el.style.left=p.x+'px'; el.style.top=p.y+'px';
+    el.style.width='6px'; el.style.height='6px'; el.style.borderRadius='50%';
+    el.style.background='rgba(255,255,255,0.95)'; el.style.zIndex=9998; el.style.pointerEvents='none';
+    document.body.appendChild(el);
+    gsap.to(el, {y: p.y-60, x: p.x+ (Math.random()-0.5)*80, opacity:0, scale:2, duration:0.9, ease:'power3.out', onComplete: ()=>el.remove()});
+  }
+});
+
+/* ========== SIMPLE SLIDE TO NEXT SECTION ========== */
+const nextBtn = document.getElementById('nextBtn');
+const nextSection = document.getElementById('nextSection');
+nextBtn.addEventListener('click', ()=>{
+  // slide hero left, bring next section from right
+  gsap.to('#hero', {x: '-100%', duration: 0.9, ease:'power2.inOut'});
+  gsap.to(nextSection, {x: '0%', duration: 0.9, ease:'power2.inOut', onStart: ()=> nextSection.classList.add('active')});
+});
+
+/* ========== DEBUG: console hint if things fail ========== */
+console.log('Snippet cargado: anillo 2D, partículas y cursor mágico listos.');
 </script>
- 
+</body>
+</html>
+
